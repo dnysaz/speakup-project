@@ -17,7 +17,6 @@ export default function GuruNavbar() {
         <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm">📖</div>
         <span className="text-xl font-medium text-gray-800">SpeakUp Project</span>
         <span className="text-xs text-gray-500 ml-1">by Diantari Kusuma</span>
-        <span className="text-sm text-gray-400 ml-1">— Lecturer</span>
       </Link>
       <button onClick={logout} className="text-sm text-gray-500 hover:text-red-500 transition-colors">
         Sign Out
