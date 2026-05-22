@@ -31,12 +31,12 @@ export default function GuruLoginPage() {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
       <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8 w-full max-w-sm">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">X</div>
-          <div>
-            <h1 className="text-lg font-semibold text-gray-800">SpeakUp Project</h1>
-            <p className="text-xs text-gray-400">Lecturer Portal</p>
-          </div>
+<div className="flex items-center gap-3 mb-6">
+        <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">📖</div>
+        <div>
+          <h1 className="text-lg font-semibold text-gray-800">SpeakUp Project</h1>
+          <p className="text-xs text-gray-400">Lecturer Portal</p>
+        </div>
         </div>
 
         <form onSubmit={handleLogin} className="flex flex-col gap-4">
