@@ -14,7 +14,7 @@ export default function GuruNavbar() {
   return (
     <header className="bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between">
       <Link href="/guru/dashboard" className="flex items-center gap-3">
-        <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm">X</div>
+        <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm">📖</div>
         <span className="text-xl font-medium text-gray-800">SpeakUp Project</span>
         <span className="text-sm text-gray-400 ml-1">— Lecturer</span>
       </Link>
