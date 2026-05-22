@@ -30,12 +30,12 @@ export default function GuruLoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
-      <div className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 text-white overflow-hidden w-full max-w-md">
+    <div className="min-h-screen bg-gray-50 px-4">
+      <div className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 text-white overflow-hidden">
         <div className="absolute -top-10 -right-10 w-56 h-56 bg-white/10 rounded-full" />
         <div className="absolute -bottom-12 -left-8 w-44 h-44 bg-white/10 rounded-full" />
         <div className="absolute top-6 right-40 w-20 h-20 bg-white/5 rounded-full" />
-        <div className="relative px-4 pt-10">
+        <div className="relative max-w-4xl mx-auto px-4 py-20">
           <div className="max-w-sm mx-auto bg-white/20 backdrop-blur-sm rounded-2xl border border-white/20 p-12">
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-xl">📖</div>
