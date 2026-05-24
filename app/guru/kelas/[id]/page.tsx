@@ -3,6 +3,7 @@ import { supabase } from "@/lib/supabase";
 import GuruNavbar from "@/components/GuruNavbar";
 import AddAssignmentForm from "@/components/AddAssignmentForm";
 import ImportStudentsForm from "@/components/ImportStudentsForm";
+import AssignmentCard from "@/components/AssignmentCard";
 
 export const revalidate = 0;
 
@@ -59,15 +60,7 @@ export default async function GuruKelasDetail({ params }: { params: Promise<{ id
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
               {assignments.map((a) => (
-                <Link
-                  key={a.id}
-                  href={`/guru/kelas/${classId}/tugas/${a.id}`}
-                  className="bg-white border border-gray-200 rounded-xl p-4 hover:shadow-md transition-shadow flex flex-col gap-1"
-                >
-                  <div className="text-2xl">📁</div>
-                  <span className="text-sm font-medium text-gray-800">{a.name}</span>
-                  <span className="text-xs text-gray-400">View & grade →</span>
-                </Link>
+                <AssignmentCard key={a.id} id={a.id} name={a.name} classId={classId} />
               ))}
             </div>
           )}
