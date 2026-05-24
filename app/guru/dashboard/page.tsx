@@ -17,12 +17,20 @@ export default async function GuruDashboard() {
       <main className="max-w-5xl mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-2xl font-medium text-gray-800">Class Dashboard</h1>
-          <Link
-            href="/guru/kelas/baru"
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700"
-          >
-            + Add Class
-          </Link>
+          <div className="flex items-center gap-2">
+            <a
+              href="/api/guru/export-all"
+              className="bg-green-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-green-700"
+            >
+              ↓ Export All (ZIP)
+            </a>
+            <Link
+              href="/guru/kelas/baru"
+              className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700"
+            >
+              + Add Class
+            </Link>
+          </div>
         </div>
 
         {!classes || classes.length === 0 ? (
