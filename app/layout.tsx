@@ -21,6 +21,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="id" className="h-full">
       <body className={`${geist.className} min-h-full bg-gray-50 text-gray-900`}>
         {children}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `document.addEventListener("gesturestart",function(e){e.preventDefault()});document.addEventListener("gesturechange",function(e){e.preventDefault()});`,
+          }}
+        />
       </body>
     </html>
   );
