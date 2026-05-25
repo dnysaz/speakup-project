@@ -69,4 +69,8 @@ create policy "public update grades" on grades for update using (true);
 create policy "public insert students" on students for insert with check (true);
 create policy "public insert classes" on classes for insert with check (true);
 create policy "public insert assignments" on assignments for insert with check (true);
+create policy "public update assignments" on assignments for update using (true);
+create policy "public delete assignments" on assignments for delete using (true);
 create policy "public delete students" on students for delete using (true);
+create policy "public update classes" on classes for update using (true);
+create policy "public delete classes" on classes for delete using (true);
