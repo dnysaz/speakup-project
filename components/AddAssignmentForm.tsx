@@ -8,15 +8,21 @@ export default function AddAssignmentForm({ classId }: { classId: string }) {
   const router = useRouter();
   const [name, setName] = useState("");
   const [saving, setSaving] = useState(false);
+  const [error, setError] = useState("");
 
   async function handleAdd(e: React.FormEvent) {
     e.preventDefault();
     if (!name.trim()) return;
     setSaving(true);
-    await supabase.from("assignments").insert({ name: name.trim(), class_id: classId });
+    setError("");
+    const { error: err } = await supabase.from("assignments").insert({ name: name.trim(), class_id: classId });
     setSaving(false);
-    setName("");
-    router.refresh();
+    if (err) {
+      setError(err.message);
+    } else {
+      setName("");
+      router.refresh();
+    }
   }
 
   return (
@@ -35,6 +41,7 @@ export default function AddAssignmentForm({ classId }: { classId: string }) {
       >
         {saving ? "..." : "+ Add Assignment"}
       </button>
+      {error && <span className="text-xs text-red-500">{error}</span>}
     </form>
   );
 }

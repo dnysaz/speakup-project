@@ -10,6 +10,10 @@ function getEmbedUrl(link: string): string | null {
       if (!videoId && url.hostname === "youtu.be") {
         videoId = url.pathname.slice(1);
       }
+      if (!videoId) {
+        const shortsMatch = url.pathname.match(/\/shorts\/([^/?]+)/);
+        if (shortsMatch) videoId = shortsMatch[1];
+      }
       if (videoId) return `https://www.youtube.com/embed/${videoId}`;
     }
 

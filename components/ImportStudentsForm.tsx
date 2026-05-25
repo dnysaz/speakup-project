@@ -20,14 +20,24 @@ export default function ImportStudentsForm({ classId }: { classId: string }) {
     const buffer = await file.arrayBuffer();
     const wb = XLSX.read(buffer);
     const ws = wb.Sheets[wb.SheetNames[0]];
-    const rows = XLSX.utils.sheet_to_json<{ NIM: string; Nama: string }>(ws, { defval: "" });
+    const rows: Record<string, string>[] = XLSX.utils.sheet_to_json(ws, { defval: "" });
 
     const students = rows
-      .filter((r) => r.NIM && r.Nama)
-      .map((r) => ({ nim: String(r.NIM).trim(), name: String(r.Nama).trim(), class_id: classId }));
+      .filter((r) => {
+        const keys = Object.keys(r);
+        const nimKey = keys.find((k) => k.toLowerCase() === "nim");
+        const namaKey = keys.find((k) => k.toLowerCase() === "nama" || k.toLowerCase() === "name");
+        return nimKey && namaKey && r[nimKey] && r[namaKey];
+      })
+      .map((r) => {
+        const keys = Object.keys(r);
+        const nimKey = keys.find((k) => k.toLowerCase() === "nim")!;
+        const namaKey = keys.find((k) => k.toLowerCase() === "nama" || k.toLowerCase() === "name")!;
+        return { nim: String(r[nimKey]).trim(), name: String(r[namaKey]).trim(), class_id: classId };
+      });
 
     if (students.length === 0) {
-      setStatus("Invalid file. Make sure columns NIM and Nama exist.");
+      setStatus("Invalid file. Make sure columns NIM and Nama (or Name) exist.");
       setLoading(false);
       return;
     }

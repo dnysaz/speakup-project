@@ -29,28 +29,35 @@ export default function KelasPage() {
   const [submitting, setSubmitting] = useState(false);
   const [successMsg, setSuccessMsg] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
+  const [loadError, setLoadError] = useState("");
 
   useEffect(() => {
+    let cancelled = false;
     async function load() {
-      const [{ data: cls }, { data: studs }, { data: assigns }] = await Promise.all([
+      const [{ data: cls, error: errCls }, { data: studs }, { data: assigns }] = await Promise.all([
         supabase.from("classes").select("name").eq("id", classId).single(),
         supabase.from("students").select("id, nim, name").eq("class_id", classId).order("name"),
         supabase.from("assignments").select("id, name").eq("class_id", classId).order("name"),
       ]);
+      if (cancelled) return;
+      if (errCls) { setLoadError("Failed to load class. Please try again."); return; }
       if (cls) setClassName(cls.name);
       if (studs) setStudents(studs);
       if (assigns) setAssignments(assigns);
     }
     load();
+    return () => { cancelled = true; };
   }, [classId]);
 
   useEffect(() => {
     if (!selectedStudent) return;
+    let cancelled = false;
     supabase
       .from("submissions")
       .select("assignment_id")
       .eq("student_id", selectedStudent.id)
-      .then(({ data }) => setSubmissions(data || []));
+      .then(({ data }) => { if (!cancelled) setSubmissions(data || []); });
+    return () => { cancelled = true; };
   }, [selectedStudent]);
 
   const filtered = students.filter(
@@ -130,6 +137,12 @@ export default function KelasPage() {
       </div>
 
       <main className="max-w-2xl mx-auto px-4 py-8">
+
+        {loadError && (
+          <div className="bg-red-50 border border-red-200 rounded-xl px-4 py-3 mb-4 text-sm text-red-700">
+            {loadError}
+          </div>
+        )}
 
         {/* Step 1: Find your name */}
         {!verified && (

@@ -20,7 +20,7 @@ export default function GradeInput({
 
   async function save() {
     const val = parseFloat(grade);
-    if (isNaN(val)) return;
+    if (grade === "" || isNaN(val)) return;
     setSaving(true);
     setError("");
 
@@ -81,7 +81,7 @@ export default function GradeInput({
         />
         <button
           onClick={save}
-          disabled={saving || !grade}
+          disabled={saving || grade === ""}
           className="bg-blue-600 text-white px-2 py-1 rounded-lg text-xs hover:bg-blue-700 disabled:opacity-50"
         >
           {saving ? "..." : "✓"}
