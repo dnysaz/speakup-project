@@ -4,6 +4,7 @@ import GuruNavbar from "@/components/GuruNavbar";
 import AddAssignmentForm from "@/components/AddAssignmentForm";
 import ImportStudentsForm from "@/components/ImportStudentsForm";
 import AssignmentCard from "@/components/AssignmentCard";
+import ShareClassButton from "@/components/ShareClassButton";
 
 export const revalidate = 0;
 
@@ -30,6 +31,7 @@ export default async function GuruKelasDetail({ params }: { params: Promise<{ id
           <h1 className="text-2xl font-medium text-gray-800">{cls?.name}</h1>
           <div className="flex items-center gap-3">
             <span className="text-sm text-gray-400">{students?.length || 0} students</span>
+            <ShareClassButton classId={classId} className={cls?.name || ""} />
             <a
               href={`/guru/kelas/${classId}/rekap`}
               target="_blank"
